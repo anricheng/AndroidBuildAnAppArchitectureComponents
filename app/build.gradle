@@ -1,0 +1,54 @@
+apply plugin: 'com.android.application'
+apply plugin:'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "org.youtwo.android_build_an_app_architecture_components"
+        minSdkVersion 14
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    dataBinding.enabled = true
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    compile "com.android.support:appcompat-v7:$support_version"
+    compile "com.android.support:recyclerview-v7:$support_version"
+    compile "com.android.support:preference-v7:$support_version"
+    compile "com.android.support.constraint:constraint-layout:$constraint_layout_version"
+    compile "com.firebase:firebase-jobdispatcher:$firebase_jobdispatcher_version"
+    compile "android.arch.lifecycle:runtime:$arch_version"
+    compile "android.arch.lifecycle:extensions:$arch_version"
+    annotationProcessor "android.arch.lifecycle:compiler:$arch_version"
+    compile "android.arch.persistence.room:runtime:$arch_version"
+    annotationProcessor "android.arch.persistence.room:compiler:$arch_version"
+
+    androidTestCompile "junit:junit:$junit_version"
+    androidTestCompile ("com.android.support.test:runner:$support_test_version") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestCompile ("com.android.support.test:rules:$support_test_version") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+}
